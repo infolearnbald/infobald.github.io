@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindBook - Livraria Digital</title>
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --secondary: #27AE60;
+            --accent: #E74C3C;
+            --light: #ECF0F1;
+            --dark: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .tab-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .livro {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .livro:hover {
+            transform: translateY(-5px);
+        }
+
+        .livro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        .livro-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .livro-titulo {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .livro-descricao {
+            color: #7F8C8D;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .livro-preco {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .livro-preco::after {
+            content: 'MZN';
+            font-size: 0.8rem;
+            color: #95A5A6;
+            font-weight: normal;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .tab-content.active {
+                grid-template-columns: 1fr;
+            }
+            
+            .livro-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 MindBook - Sua Livraria Digital</h1>
+    </header>
+
+    <div class="tab-container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'romance')">Romance</button>
+            <button class="tab-btn" onclick="openTab(event, 'horror')">Horror</button>
+            <button class="tab-btn" onclick="openTab(event, 'autores')">Autores</button>
+            <button class="tab-btn" onclick="openTab(event, 'poemas')">Poemas</button>
+        </div>
+
+        <!-- Aba Romance -->
+        <div id="romance" class="tab-content active">
+            <div class="livro">
+                <a href="https://wa.me/258844180213" target="_blank">
+                    <img src="colera.png" 
+                         alt="Capa do Livro" 
+                         class="livro-img">
+                </a>
+                <h2 class="livro-titulo">Amor em Tempos de Cólera</h2>
+                <p class="livro-descricao">Um clássico do realismo mágico que explora o amor em todas as suas formas.</p>
+                <p class="livro-preco">570</p>
+            </div>
+            <!-- Adicione mais 3 livros -->
+        </div>
+
+        <!-- Aba Horror -->
+        <div id="horror" class="tab-content">
+            <div class="livro">
+                <a href="https://wa.me/258844180213" target="_blank">
+                    <img src="Edgar1.jpeg" 
+                         alt="Capa do Livro" 
+                         class="livro-img">
+                </a>
+                <h2 class="livro-titulo"> Coração delator </h2>
+                <p class="livro-descricao">Um marco da literatura de terror por Edgar Allan Poe.</p>
+                <p class="livro-preco">450</p>
+            </div>
+            <!-- Adicione mais 3 livros -->
+        </div>
+
+        <!-- Aba Autores -->
+        <div id="autores" class="tab-content">
+            <div class="livro">
+                <p><em><strong>Gabriel García Márquez</strong></em> Escritor colombiano, um dos maiores nomes do realismo mágico, gênero literário que mistura elementos fantásticos com a realidade cotidiana. Recebeu o Prêmio Nobel de Literatura em 1982. Sua obra Amor em Tempos de Cólera é um dos romances mais emblemáticos, tratando de um amor duradouro e complexo.
+                    <br>
+
+                    <em><strong>Edgar Allan Poe</strong></em> Escritor, poeta e crítico literário norte-americano, conhecido por seus contos de mistério e terror psicológico. Considerado um dos pioneiros do gênero de ficção policial e do conto macabro. Coração Delator é um de seus contos mais famosos, explorando temas como insanidade e culpa.
+                    <br>
+
+                    <em><strong>Ropson Gustavo </strong></em> Escritor moçambicano nascido em 2004, é autor de livros como Silêncio Gótico, Coração de Papel e Galeria das Almas. Sua escrita é caracterizada pela exploração de temas como mistério, introspecção e complexidade emocional, refletindo um estilo único e contemporâneo.
+
+
+
+ </p>
+                <!-- Conteúdo sobre autores -->
+            </div>
+        </div>
+
+        <!-- Aba Poemas -->
+        <div id="poemas" class="tab-content">
+            <div class="livro">
+                <a href="https://wa.me/258844180213" target="_blank">
+                    <img src="Galeria.jpg" 
+                         alt="Capa do Livro" 
+                         class="livro-img">
+                </a>
+                <h2 class="livro-titulo">Galeria das Almas</h2>
+                <p class="livro-descricao"> Este livro é uma viagem pelas emoções que todos nós experimentamos, uma jornada entre as sombras da melancolia e as
+luzes da memória.</p>
+                <p class="livro-preco">520</p>
+            </div>
+        </div>
+    </div>
+            <!-- Adicione mais 3 livros -->
+        </div>
+    <script>
+        function openTab(evt, tabName) {
+            // Esconder todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar conteúdo selecionado
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
